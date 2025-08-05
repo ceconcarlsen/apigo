@@ -76,7 +76,9 @@ func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error 
 
 // Handlers for account operations
 func (s *APIServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
-	return writeJSON(w, http.StatusOK, map[string]string{"message": "Get account details"})
+	var account = newAccount("John", "Doe")
+	log.Println("Get account details for:", account.FirstName, account.LastName)
+	return writeJSON(w, http.StatusOK, account)
 }
 
 func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) error {
